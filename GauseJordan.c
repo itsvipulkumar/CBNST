@@ -1,0 +1,58 @@
+#include <stdio.h>
+int n;
+
+void convertToDiagonal(float a[][n + 1], int n)
+{
+    float ratio;
+    int i, j, x, y, k;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (j != i)
+            {
+                ratio = a[j][i] / a[i][i];
+                for (int k = 0; k < n + 1; k++)
+                {
+                    a[j][k] = a[j][k] - (ratio * a[i][k]);
+                }
+                printf("Intermediate forms:\n");
+                for (x = 0; x < n; x++)
+                {
+                    for (y = 0; y < n + 1; y++)
+                        printf("%f ", a[x][y]);
+                    printf("\n");
+                }
+                printf("\n");
+            }
+        }
+    }
+}
+
+void printValue(float a[][n + 1], int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+        printf("%.2f\n", a[i][n] / a[i][i]);
+}
+int main()
+{
+    int i, j, k, x, y;
+    float ratio;
+    printf("Enter no of Unknowns\n");
+    scanf("%d", &n);
+    float a[n][n + 1];
+    printf("Enter the Augmented Matrix\n");
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n + 1; j++)
+            scanf("%f", &a[i][j]);
+    }
+    convertToDiagonal(a, n);
+    printValue(a, n);
+    return 0;
+}
+
+// 1 1 1 9
+// 2 -3 4 13
+// 3 4 5 40
