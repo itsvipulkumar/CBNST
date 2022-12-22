@@ -1,8 +1,11 @@
-// Simpson 1/3 and 3/8 in 1 c program
+// C program to implement Simpson 1/3 and Simpson 3/8 with switch case 
 /*
-x     0   1   2   3
-f(x)
+x     a=0,b=6 , n =6;
+
+f(x)=1/(1+x^2) simpson 1/3 ans= 1.366173
+simpson 3/8 ans= 1.357081
 */
+// C program to implement Simpson 1/3 and Simpson 3/8 with switch case 
 #include <stdio.h>
 float f(float x)
 {
@@ -58,11 +61,21 @@ int main()
     {
         Y[i] = f(X[i]);
     }
+    int ch;
 
-    // apply formula
-
-    Simpson_1by3(Y, h, n);
-    Simpson_3by8(Y, h, n);
-
+    printf("Enter 1 for Simpson 1/3 and 2 for Simpson 3/8 : ");
+    scanf("%d", &ch);
+    switch (ch)
+    {
+    case 1:
+        Simpson_1by3(Y, h, n);
+        break;
+    case 2:
+        Simpson_3by8(Y, h, n);
+        break;
+    default:
+        printf("Enter valid number ");
+        break;
+    }
     return 0;
 }
